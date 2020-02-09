@@ -1,0 +1,6 @@
+  
+{
+    "port": 5000,
+    "mongoUri": "mongodb+srv://calendar:123456qwerty@cluster0-8kuxe.azure.mongodb.net/test?retryWrites=true&w=majority",
+    "jwtSecret": "rubot secret calendar"
+}

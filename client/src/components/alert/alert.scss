@@ -1,0 +1,23 @@
+.alert {
+    transform: translateX(-50%);
+    top: 0;
+    left: 50%;
+}
+
+.alert-enter {
+    opacity: 0;
+}
+
+.alert-enter-active {
+    opacity: 1;
+    transition: opacity 750ms;
+}
+
+.alert-exit {
+    opacity: 1;
+}
+
+.alert-exit-active {
+    opacity: 0;
+    transition: opacity 750ms;
+}

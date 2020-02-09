@@ -1,0 +1,20 @@
+.schedule-container {
+    position: relative;
+    font-weight: 200;
+    max-width: 250px;
+    .times {
+        height: 60px;
+        color: rgba(0, 0, 0, .6);
+    }
+    .half-hour {
+        font-size: 12px;
+    }
+    .full-hour {
+        border-top: 1px solid #ececec;
+        font-size: 16px;
+    }
+    .event-container {
+        margin-left: 50px;
+        position: relative;
+    }
+}

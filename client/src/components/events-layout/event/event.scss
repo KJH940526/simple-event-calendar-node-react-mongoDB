@@ -1,0 +1,13 @@
+.event {
+    background: #E2ECF5;
+    position: absolute;
+    padding: 4px;
+    font-size: 14px;
+    border-left: 4px solid #6E9ECF;
+    z-index: 10000;
+    .event-title {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+}
