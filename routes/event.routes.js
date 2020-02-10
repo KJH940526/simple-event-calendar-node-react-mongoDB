@@ -1,14 +1,10 @@
 const { Router } = require('express');
-const fs = require('fs');
-const path = require('path');
-const multer = require('multer');
 
 const Event = require('../models/event');
 const auth = require('../middleware/auth.middleware');
 
 const router = Router();
 
-const download = multer({ dest: 'temp' });
 
 
 const mapDataToEvent = (events) => {
@@ -19,13 +15,20 @@ const mapDataToEvent = (events) => {
             duration,
             title
         }));
-}
+};
+
+const mapDataToPlainEvent = (events) => events.map(({ start, duration, title }) => ({ start, duration, title }));
+
 
 // /api/event   get all events by user
 router.get('/', auth, async (req, res) => {
     try {
         let events = await Event.find({ owner: req.user.userId });
-        events = mapDataToEvent(events);
+        if (req.query.json) {
+            events = mapDataToPlainEvent(events);
+        } else {
+            events = mapDataToEvent(events);
+        }
         res.json(events);
     } catch (e) {
         console.log(e);

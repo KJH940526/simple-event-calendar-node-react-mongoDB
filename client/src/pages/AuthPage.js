@@ -63,7 +63,7 @@ const AuthPage = ({
                                 value={password}
                                 id="inputPassword"
                                 className="form-control  mb-2"
-                                placeholder="Password"
+                                placeholder="Password: must be longer than 5 characters"
                                 onChange={(event) => changeAuthFormHandler(event, { email, password })} />
                         </div>
                         <div className="card-actions d-flex justify-content-end">
