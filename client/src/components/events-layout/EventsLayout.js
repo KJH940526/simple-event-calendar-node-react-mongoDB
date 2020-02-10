@@ -1,6 +1,7 @@
 import React, { useEffect, useCallback } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 
 import * as actionCreators from '../../appStore/actions';
 import { withEventService } from '../../hoc/with-event-service';
@@ -10,7 +11,8 @@ import addDivisors from '../../services/addDivisors';
 import './events-layout.scss';
 
 
-const EventsLayout = ({ from,
+const EventsLayout = ({
+    from,
     to,
     events,
     jwtToken,
@@ -73,7 +75,18 @@ const EventsLayout = ({ from,
     )
 };
 
-const mapStateToProps = ({ calendar, auth }) => ({ ...calendar, ...auth })
+EventsLayout.propTypes = {
+    from: PropTypes.number.isRequired,
+    to: PropTypes.number.isRequired,
+    events: PropTypes.array.isRequired,
+    jwtToken: PropTypes.string.isRequired,
+    fetchAllEvents: PropTypes.func.isRequired,
+    onFetchEvents: PropTypes.func.isRequired,
+    removeRequest: PropTypes.func.isRequired,
+    onRemoveEvent: PropTypes.func.isRequired,
+    showAlert: PropTypes.func.isRequired
+}
 
+const mapStateToProps = ({ calendar, auth }) => ({ ...calendar, ...auth });
 
 export default withEventService(connect(mapStateToProps, actionCreators)(EventsLayout));

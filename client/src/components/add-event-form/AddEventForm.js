@@ -4,19 +4,34 @@ import moment from 'moment';
 
 import * as actionCreators from '../../appStore/actions';
 import { withEventService } from '../../hoc/with-event-service';
+import PropTypes from 'prop-types';
+
 
 import './add-event-form.scss';
 
-const AddEventForm = ({ from, to, title, start, end, jwtToken, onAddEvent, changeEventFormHandler, addEventRequest, showAlert }) => {
+const inputToTime = (input) => {
+    const [hours, minutes] = input.split(':');
+    return moment().set({ hours, minutes });
+};
 
-    const inputToTime = (input) => {
-        const [hours, minutes] = input.split(':');
-        return moment().set({ hours, minutes });
-    };
+const timeDifferenceMin = (firstT, secondT) => {
+    return moment.duration(secondT.diff(firstT)).as('minutes');
+};
 
-    const timeDifferenceMin = (firstT, secondT) => {
-        return moment.duration(secondT.diff(firstT)).as('minutes');
-    };
+
+const AddEventForm = ({
+    from,
+    to,
+    title,
+    start,
+    end,
+    jwtToken,
+    onAddEvent,
+    changeEventFormHandler,
+    addEventRequest,
+    showAlert
+}) => {
+
 
     const onSubmit = async (event) => {
         event.preventDefault();
@@ -45,7 +60,7 @@ const AddEventForm = ({ from, to, title, start, end, jwtToken, onAddEvent, chang
         const body = { title, start: startToMin, duration };
 
         try {
-            const event = await addEventRequest(body, jwtToken);            
+            const event = await addEventRequest(body, jwtToken);
             onAddEvent(event);
 
         } catch (e) {
@@ -94,6 +109,19 @@ const AddEventForm = ({ from, to, title, start, end, jwtToken, onAddEvent, chang
             <button type="submit" className="btn btn-info align-self-end mb-1">Add event</button>
         </form>
     )
+};
+
+AddEventForm.propTypes = {
+    from: PropTypes.number.isRequired,
+    to: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    start: PropTypes.string.isRequired,
+    end: PropTypes.string.isRequired,
+    jwtToken: PropTypes.string.isRequired,
+    onAddEvent: PropTypes.func.isRequired,
+    changeEventFormHandler: PropTypes.func.isRequired,
+    addEventRequest: PropTypes.func.isRequired,
+    showAlert: PropTypes.func.isRequired
 };
 
 const mapStateToProps = ({ calendar: { title, start, end }, auth: { jwtToken } }) => ({ title, start, end, jwtToken });

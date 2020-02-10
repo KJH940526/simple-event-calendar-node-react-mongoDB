@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import * as actionCreators from '../appStore/actions';
 import { withEventService } from '../hoc/with-event-service';
@@ -90,6 +91,16 @@ const AuthPage = ({
         </div>
     );
 };
+
+AuthPage.propTypes = {
+    email: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired,
+    onLogin: PropTypes.func.isRequired,
+    showAlert: PropTypes.func.isRequired,
+    registerRequest: PropTypes.func.isRequired,
+    loginRequest: PropTypes.func.isRequired,
+    changeAuthFormHandler: PropTypes.func.isRequired
+}
 
 const mapStateToProps = ({ auth }) => ({ ...auth });
 

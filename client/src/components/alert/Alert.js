@@ -2,6 +2,8 @@ import React from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
 
 import * as actions from '../../appStore/actions';
 import './alert.scss'
@@ -36,5 +38,11 @@ const mapDispatchToProps = (dispatch) => {
         hideAlert
     };
 }
+
+Alert.propTypes = {
+    hideAlert: PropTypes.func.isRequired,
+    alert: PropTypes.object.isRequired
+};
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(Alert);

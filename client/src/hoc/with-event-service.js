@@ -16,4 +16,4 @@ export const withEventService = (Wrapped) => {
             </EventServiceConsumer>
         )
     }
-}
+};

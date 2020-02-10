@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import * as actionCreators from '../../appStore/actions';
 import HttpService from '../../services/httpService';
@@ -54,6 +55,14 @@ const Header = ({ isAuthenticated, jwtToken, events, onLogout, showAlert }) => {
         </nav >
     );
 };
+
+Header.propTypes = {
+    isAuthenticated: PropTypes.bool.isRequired,
+    jwtToken: PropTypes.string,
+    events: PropTypes.array.isRequired,
+    onLogout: PropTypes.func.isRequired,
+    showAlert: PropTypes.func.isRequired
+}
 
 const mapStateToProps = ({ auth, calendar: { events } }) => ({ ...auth, events });
 export default connect(mapStateToProps, actionCreators)(Header);

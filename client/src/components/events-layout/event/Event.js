@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 
 import './event.scss';
 
@@ -26,5 +28,10 @@ const Event = ({ event, removeEventHandler }) => {
         </div>
     );
 };
+
+Event.propTypes = {
+    event: PropTypes.object.isRequired,
+    removeEventHandler: PropTypes.func.isRequired
+}
 
 export default Event;
