@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import { EventsPage } from './pages/EventsPage';
 import AuthPage from './pages/AuthPage';
@@ -23,4 +24,8 @@ export const useRoutes = isAuthenticated => {
             <Redirect to='/' />
         </Switch>
     )
+};
+
+useRoutes.propTypes = {
+    isAuthenticated: PropTypes.bool.isRequired
 }

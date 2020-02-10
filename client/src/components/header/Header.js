@@ -62,7 +62,7 @@ Header.propTypes = {
     events: PropTypes.array.isRequired,
     onLogout: PropTypes.func.isRequired,
     showAlert: PropTypes.func.isRequired
-}
+};
 
 const mapStateToProps = ({ auth, calendar: { events } }) => ({ ...auth, events });
 export default connect(mapStateToProps, actionCreators)(Header);

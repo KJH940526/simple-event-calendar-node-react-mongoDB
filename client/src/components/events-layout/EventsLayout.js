@@ -85,7 +85,7 @@ EventsLayout.propTypes = {
     removeRequest: PropTypes.func.isRequired,
     onRemoveEvent: PropTypes.func.isRequired,
     showAlert: PropTypes.func.isRequired
-}
+};
 
 const mapStateToProps = ({ calendar, auth }) => ({ ...calendar, ...auth });
 

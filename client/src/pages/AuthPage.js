@@ -100,7 +100,7 @@ AuthPage.propTypes = {
     registerRequest: PropTypes.func.isRequired,
     loginRequest: PropTypes.func.isRequired,
     changeAuthFormHandler: PropTypes.func.isRequired
-}
+};
 
 const mapStateToProps = ({ auth }) => ({ ...auth });
 

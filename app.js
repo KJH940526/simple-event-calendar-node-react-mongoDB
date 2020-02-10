@@ -9,16 +9,15 @@ const eventRoutes = require('./routes/event.routes');
 const app = express();
 
 // CORS
-app.use((req, res, next) => {
+app.use((_, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "*");
-    res.header("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE");
+    res.header("Access-Control-Allow-Methods", "*");
     next();
 });
 
 //parse JSON from req.body
 app.use(express.json({ extended: true }));
-
 
 app.use('/api/auth', authRoutes);
 app.use('/api/event', eventRoutes);

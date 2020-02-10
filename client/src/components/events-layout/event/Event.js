@@ -32,6 +32,6 @@ const Event = ({ event, removeEventHandler }) => {
 Event.propTypes = {
     event: PropTypes.object.isRequired,
     removeEventHandler: PropTypes.func.isRequired
-}
+};
 
 export default Event;

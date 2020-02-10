@@ -23,6 +23,7 @@ class App extends Component {
     isAuthenticated: PropTypes.bool.isRequired,
     onLogin: PropTypes.func.isRequired
   }
+  
   componentDidMount() {
     let data = localStorage.getItem('userData');
     data = data && JSON.parse(data);
