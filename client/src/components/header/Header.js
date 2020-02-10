@@ -10,7 +10,12 @@ const httpService = new HttpService();
 const Header = ({ isAuthenticated, jwtToken, events, onLogout, showAlert }) => {
     const onLoadJson = async (token) => {
         try {
-            await httpService.loadJSON(token);
+            const blob = await httpService.requestJsonBlob(token);
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `MyEvents${Date.now()}.json`;
+            a.click();
         } catch (e) {
             showAlert(e.message);
         }

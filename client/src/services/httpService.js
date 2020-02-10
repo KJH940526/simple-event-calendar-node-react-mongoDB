@@ -1,6 +1,6 @@
 export default class HttpService {
     _apiBase = '/api';
-    _request = async (url, method = "GET", body = null, headers = {}) => {
+    _request = async(url, method = "GET", body = null, headers = {}) => {
         try {
             if (body) {
                 body = JSON.stringify(body);
@@ -17,30 +17,39 @@ export default class HttpService {
             throw e;
         }
     }
-    registerRequest = async (body) => {
+    registerRequest = async(body) => {
         return await this._request(`${this._apiBase}/auth/register`, 'POST', body);
     }
-    loginRequest = async (body) => {
+    loginRequest = async(body) => {
         return await this._request(`${this._apiBase}/auth/login`, 'POST', body);
     }
-    fetchAllEvents = async (token) => {
+    fetchAllEvents = async(token) => {
         return await this._request(`${this._apiBase}/event`, 'GET', null, {
             Authorization: `Bearer ${token}`
         });
     }
-    removeRequest = async (id, token) => {
+    removeRequest = async(id, token) => {
         return await this._request(`${this._apiBase}/event/remove/${id}`, 'delete', null, {
             Authorization: `Bearer ${token}`
         });
     }
-    addEventRequest = async (body, token) => {
+    addEventRequest = async(body, token) => {
         return await this._request(`${this._apiBase}/event/add`, 'POST', body, {
             Authorization: `Bearer ${token}`
         });
     }
-    loadJSON = async (token) => {
-        return await this._request(`${this._apiBase}/event/json`, 'GET', null, {
-            Authorization: `Bearer ${token}`
-        })
-    };
+    requestJsonBlob = async(token) => {
+        try {
+            const response = await fetch(`${this._apiBase}/event`, 'GET', null, {
+                Authorization: `Bearer ${token}`
+            });
+            if (!response.ok) {
+                throw new Error(data.message || 'Something is went wrong!');
+            }
+            return await response.blob();
+        } catch (e) {
+            throw e;
+        }
+    }
+};
 }

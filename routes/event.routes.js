@@ -61,32 +61,4 @@ router.delete('/remove/:id', auth, async (req, res) => {
     }
 });
 
-// /api/event/json load JSON file
-router.get('/json', auth, download.none(), async (req, res) => {
-    try {
-        let events = await Event.find({ owner: req.user.userId });
-        events = mapDataToEvent(events);
-
-
-        // write data to temp file
-        const filePath = path.join(__dirname, "..", "temp", "events.json");
-        await fs.writeFile(filePath, JSON.stringify(events), err => {
-            if (err) throw err;
-        });
-
-        //send data
-        res.sendFile(filePath);
-
-        // remove temp file
-        // await fs.unlink(filePath,err=>{
-        //     if(err) throw err;
-        // });
-
-    } catch (e) {
-        console.log(e);
-        res.status(500).json({ message: 'Something is went terribly wrong, please try again' });
-    }
-});
-
-
 module.exports = router;
