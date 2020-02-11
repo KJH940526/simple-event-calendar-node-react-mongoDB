@@ -9,18 +9,19 @@ const areIntersected = (first, second) => {
 
 const addDivisors = (events) => {
     if (!events.length) return events;
-    let modEvents = events.map(event => ({
-        ...event,
-        widthDivisor: 1,
-        position: 0
-    }));
+    let modEvents = events
+        .map(event => ({
+            ...event,
+            widthDivisor: 1,
+            position: 0
+        }))
+        .sort((a, b) => a.start - b.start);
 
 
     for (let i = 0; i < modEvents.length; i++) {
         const intersected = [];
         let isIncludedI = false;
         for (let j = i + 1; j < modEvents.length; j++) {
-            if (!j) break;
             if (areIntersected(modEvents[i], modEvents[j])) {
                 if ((!isIncludedI)) {
                     intersected.push(modEvents[i]);
@@ -29,13 +30,17 @@ const addDivisors = (events) => {
                 intersected.push(modEvents[j]);
             }
         }
-        intersected.length && intersected
-            .forEach((el, idx) => {
-                if (el.widthDivisor === 1) {
-                    el.widthDivisor++;
-                    el.position = idx;
-                }
-            });
+        if (intersected.length > 1) {
+            intersected[0].position && intersected.sort((a, b) => a.position - b.position);
+
+            intersected
+                .forEach((el, idx) => {
+                    if (el.widthDivisor === 1) {
+                        el.widthDivisor++;
+                        el.position = idx;
+                    }
+                });
+        }
         intersected.length = 0;
     }
     return modEvents;
