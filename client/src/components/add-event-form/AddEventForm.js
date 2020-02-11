@@ -45,13 +45,13 @@ const AddEventForm = ({
         const endToTime = inputToTime(end);
 
         if (timeDifferenceMin(fromToDate, startToDate) < 0) {
-            showAlert(`Start time cannot be earlier than ${fromToDate.format('HH:mm')}`);
+            return showAlert(`Start time cannot be earlier than ${fromToDate.format('HH:mm')}`);
         }
         if (timeDifferenceMin(endToTime, toToDate) < 0) {
-            showAlert(`End time cannot be later than ${toToDate.format('HH:mm')}`);
+            return showAlert(`End time cannot be later than ${toToDate.format('HH:mm')}`);
         }
         if (timeDifferenceMin(startToDate, endToTime) <= 0) {
-            showAlert(`End time cannot be less or equal to start time!`);
+            return showAlert(`End time cannot be less or equal to start time!`);
         }
 
         const startToMin = timeDifferenceMin(fromToDate, startToDate).toFixed();
