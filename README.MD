@@ -7,13 +7,19 @@ In the project directory, you can run:
 
 ### `npm install`
 
-### `npm run client:install`
+Go to 'client' folder and again run:
 
-Installs all dependencies in the project
+### `npm install`
+
+Go back to the project directory and run:
 
 ### `npm run dev`
 
-Runs the app in the development mode.
+It will run the app in the development mode.
+
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.
+
+### `It is also necessary that the mongoDB server was started`
+
