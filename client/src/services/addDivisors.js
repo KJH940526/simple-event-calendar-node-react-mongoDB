@@ -36,7 +36,7 @@ const addDivisors = (events) => {
             intersected
                 .forEach((el, idx) => {
                     if (el.widthDivisor === 1) {
-                        el.widthDivisor++;
+                        el.widthDivisor = intersected.length;
                         el.position = idx;
                     }
                 });
