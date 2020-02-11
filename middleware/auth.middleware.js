@@ -11,9 +11,11 @@ module.exports = (req, res, next) => {
         if (!token) {
             return res.status(401).json({ message: 'You are not authorized' });
         }
-        const decoded = jwt.verify(token, config.get('jwtSecret'));
-        req.user = decoded;
-        next();
+        jwt.verify(token, config.get('jwtSecret'), (err, decoded) => {
+            if (err) return res.status(401).json({ message: 'You are not authorized' });
+            req.user = decoded;
+            next();
+        });
     } catch (e) {
 
     }
