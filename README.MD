@@ -1,11 +1,7 @@
 This project was created by Rustam Botirov [rustambotirov88.gmail.com](rustambotirov88.gmail.com)
 
-
-## To start testing
-
 To clone project:
 ### `git clone https://github.com/rubot88/simple-event-calendar-node-react-mongoDB.git`
-
 
 In the project directory, you can run:
 
